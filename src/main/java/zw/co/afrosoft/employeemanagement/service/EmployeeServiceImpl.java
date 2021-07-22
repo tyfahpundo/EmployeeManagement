@@ -3,6 +3,7 @@ package zw.co.afrosoft.employeemanagement.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import zw.co.afrosoft.employeemanagement.domain.Employee;
 import zw.co.afrosoft.employeemanagement.persistence.EmployeeRepository;
@@ -59,5 +60,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> getEmployeesByNameAndLocation(String name, String location) {
         return repo.findByNameAndLocation(name,location);
+    }
+
+    @Override
+    public List<Employee> getEmployeesContaining(String name, Sort sort) {
+        Sort sort1 = Sort.by(Sort.Direction.DESC, "id");
+        return repo.findByNameContaining(name, sort1);
     }
 }

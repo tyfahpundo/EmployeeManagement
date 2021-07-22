@@ -1,6 +1,7 @@
 package zw.co.afrosoft.employeemanagement.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -51,5 +52,9 @@ public class EmployeeController {
     @GetMapping("/employees/filterByNameAndLocation")
     public ResponseEntity<List<Employee>> getEmployeesByNameAndLocation(@RequestParam String name, @RequestParam String location){
         return new ResponseEntity<List<Employee>>(service.getEmployeesByNameAndLocation(name, location),HttpStatus.OK);
+    }
+    @GetMapping("/employees/filterByKeyword")
+    public ResponseEntity<List<Employee>> getEmployeesByKeyword(@RequestParam String name, @RequestParam Sort sort){
+        return new ResponseEntity<List<Employee>>(service.getEmployeesContaining(name, sort),HttpStatus.OK);
     }
 }

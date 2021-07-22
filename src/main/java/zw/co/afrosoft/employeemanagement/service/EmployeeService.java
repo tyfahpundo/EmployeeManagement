@@ -1,5 +1,6 @@
 package zw.co.afrosoft.employeemanagement.service;
 
+import org.springframework.data.domain.Sort;
 import zw.co.afrosoft.employeemanagement.domain.Employee;
 
 import java.util.List;
@@ -20,5 +21,8 @@ public interface EmployeeService {
     List<Employee> getEmployeesByAge(Long age);
 
     List<Employee> getEmployeesByNameAndLocation(String name, String location);
+
+
+    List<Employee> getEmployeesContaining(String keyword, Sort sort);
 
 }
