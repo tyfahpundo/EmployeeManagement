@@ -63,8 +63,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<Employee> getEmployeesContaining(String name, Sort sort) {
-        Sort sort1 = Sort.by(Sort.Direction.DESC, "id");
-        return repo.findByNameContaining(name, sort1);
+    public List<Employee> getEmployeesContaining(String name) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        return repo.findByNameContaining(name, sort);
     }
 }

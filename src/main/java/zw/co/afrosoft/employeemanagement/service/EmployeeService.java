@@ -23,6 +23,6 @@ public interface EmployeeService {
     List<Employee> getEmployeesByNameAndLocation(String name, String location);
 
 
-    List<Employee> getEmployeesContaining(String keyword, Sort sort);
+    List<Employee> getEmployeesContaining(String keyword);
 
 }
