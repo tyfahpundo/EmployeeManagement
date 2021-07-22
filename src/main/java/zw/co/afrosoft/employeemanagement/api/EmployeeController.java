@@ -16,9 +16,9 @@ public class EmployeeController {
     private EmployeeService service;
 
     @GetMapping("/employees")
-    public ResponseEntity<List<Employee>>  getEmployees(){
+    public ResponseEntity<List<Employee>>  getEmployees(@RequestParam Integer pageNumber, @RequestParam Integer pageSize){
 
-        return new ResponseEntity<List<Employee>>(service.getEmployees(),HttpStatus.OK) ;
+        return new ResponseEntity<List<Employee>>(service.getEmployees(pageNumber,pageSize),HttpStatus.OK) ;
     }
     @GetMapping("/employees/{id}")
     public ResponseEntity<Employee>  getSingleEmployee(@PathVariable long id)

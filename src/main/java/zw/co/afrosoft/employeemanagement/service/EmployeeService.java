@@ -5,7 +5,7 @@ import zw.co.afrosoft.employeemanagement.domain.Employee;
 import java.util.List;
 
 public interface EmployeeService {
-    List<Employee> getEmployees();
+    List<Employee> getEmployees(int pageNumber, int pageSize);
 
     Employee saveEmployee(Employee employee);
 

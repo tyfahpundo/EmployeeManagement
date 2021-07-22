@@ -1,6 +1,8 @@
 package zw.co.afrosoft.employeemanagement.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import zw.co.afrosoft.employeemanagement.domain.Employee;
 import zw.co.afrosoft.employeemanagement.persistence.EmployeeRepository;
@@ -14,8 +16,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepository repo;
 
     @Override
-    public List<Employee> getEmployees() {
-        return repo.findAll();
+    public List<Employee> getEmployees(int pageNumber, int pageSize) {
+        Pageable pages = PageRequest.of(pageNumber,pageSize);
+        return repo.findAll(pages).getContent();
     }
 
     @Override

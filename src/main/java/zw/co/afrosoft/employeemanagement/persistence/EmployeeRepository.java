@@ -1,11 +1,13 @@
 package zw.co.afrosoft.employeemanagement.persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 import zw.co.afrosoft.employeemanagement.domain.Employee;
 
 import java.util.List;
-
-public interface EmployeeRepository extends JpaRepository<Employee,Long> {
+@Repository
+public interface EmployeeRepository extends PagingAndSortingRepository<Employee,Long> {
 
     //JPA FINDER METHODS or QUERY METHODS
     List<Employee> findByName(String name);
