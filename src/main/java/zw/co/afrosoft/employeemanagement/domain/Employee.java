@@ -5,6 +5,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -14,15 +15,15 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull(message = "Name Should Not be Null")
+    @NotBlank(message = "Name Should Not be Null")
     private String name;
 
     private Long age= 0L;
-    @NotNull(message = "Location cannot be Null")
+    @NotBlank(message = "Location cannot be Null") // @NotBlank caters for @NotNull and @NotEmpty
     private String location;
     @Email(message = "Please provide a Valid email address")
     private String email;
-    @NotNull(message = "Department should not be Null")
+    @NotBlank(message = "Department should not be Null")
     private String department;
     @CreationTimestamp
     @Column(name = "created_at", nullable = false,updatable = false)
