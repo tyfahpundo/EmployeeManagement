@@ -1,6 +1,8 @@
 package zw.co.afrosoft.employeemanagement.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import zw.co.afrosoft.employeemanagement.domain.Employee;
 import zw.co.afrosoft.employeemanagement.service.EmployeeService;
@@ -12,29 +14,30 @@ import java.util.List;
 public class EmployeeController {
     @Autowired
     private EmployeeService service;
-    @GetMapping("/employees")
-    public List<Employee> getEmployees(){
 
-        return service.getEmployees();
+    @GetMapping("/employees")
+    public ResponseEntity<List<Employee>>  getEmployees(){
+
+        return new ResponseEntity<List<Employee>>(service.getEmployees(),HttpStatus.OK) ;
     }
     @GetMapping("/employees/{id}")
-    public Employee getSingleEmployee(@PathVariable long id)
+    public ResponseEntity<Employee>  getSingleEmployee(@PathVariable long id)
     {
-        return service.getSingleEmployee(id);
+        return new ResponseEntity<Employee>(service.getSingleEmployee(id),HttpStatus.OK) ;
     }
     @PostMapping("/employees")
-    public Employee saveEmployee(@Valid @RequestBody Employee employee){
+    public ResponseEntity<Employee>  saveEmployee(@Valid @RequestBody Employee employee){
 
-        return service.saveEmployee(employee);
+        return new ResponseEntity<Employee>(service.saveEmployee(employee), HttpStatus.CREATED) ;
     }
     @DeleteMapping("/employees")
-    public void deleteEmployee(@RequestParam Long id){
+    public ResponseEntity<HttpStatus> deleteEmployee(@RequestParam Long id){
 
-        service.deleteEmployee(id);
+       return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT) ;
     }
     @PutMapping("/employees/{id}")
-    public Employee updateEmployee(@PathVariable long id,@RequestBody Employee employee){
+    public ResponseEntity<Employee>  updateEmployee(@PathVariable long id,@RequestBody Employee employee){
         employee.setId(id);
-        return service.updateEmployee(employee);
+        return new ResponseEntity<Employee>(service.updateEmployee(employee),HttpStatus.OK) ;
     }
 }
