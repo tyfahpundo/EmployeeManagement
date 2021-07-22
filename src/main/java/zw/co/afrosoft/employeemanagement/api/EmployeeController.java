@@ -40,4 +40,16 @@ public class EmployeeController {
         employee.setId(id);
         return new ResponseEntity<Employee>(service.updateEmployee(employee),HttpStatus.OK) ;
     }
+    @GetMapping("/employees/filterByName")
+    public ResponseEntity<List<Employee>> getEmployeesByName(@RequestParam String name){
+        return new ResponseEntity<List<Employee>>(service.getEmployeesByName(name),HttpStatus.OK);
+    }
+    @GetMapping("/employees/filterByAge")
+    public ResponseEntity<List<Employee>> getEmployeesByAge(@RequestParam Long age){
+        return new ResponseEntity<List<Employee>>(service.getEmployeesByAge(age), HttpStatus.OK);
+    }
+    @GetMapping("/employees/filterByNameAndLocation")
+    public ResponseEntity<List<Employee>> getEmployeesByNameAndLocation(@RequestParam String name, @RequestParam String location){
+        return new ResponseEntity<List<Employee>>(service.getEmployeesByNameAndLocation(name, location),HttpStatus.OK);
+    }
 }

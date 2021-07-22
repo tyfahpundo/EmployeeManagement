@@ -42,4 +42,19 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee updateEmployee(Employee employee) {
         return repo.save(employee);
     }
+
+    @Override
+    public List<Employee> getEmployeesByName(String name) {
+        return repo.findByName(name);
+    }
+
+    @Override
+    public List<Employee> getEmployeesByAge(Long age) {
+        return repo.findByAge(age);
+    }
+
+    @Override
+    public List<Employee> getEmployeesByNameAndLocation(String name, String location) {
+        return repo.findByNameAndLocation(name,location);
+    }
 }

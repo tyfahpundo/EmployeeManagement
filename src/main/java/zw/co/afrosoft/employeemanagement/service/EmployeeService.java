@@ -15,4 +15,10 @@ public interface EmployeeService {
 
     Employee updateEmployee(Employee employee);
 
+    List<Employee> getEmployeesByName(String name);
+
+    List<Employee> getEmployeesByAge(Long age);
+
+    List<Employee> getEmployeesByNameAndLocation(String name, String location);
+
 }
